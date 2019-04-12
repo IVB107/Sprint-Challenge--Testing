@@ -46,9 +46,16 @@ describe('server.js', () => {
       const game = { title: 'Random', genre: 'Game' };
       const response = await request(server).post('/games').send(game);
 
+      expect(response.body.title).toBe('Random');
+    })
+
+    it('Should return status code 422 if req.body is incomplete', async () => {
+      const game = { title: 'AnotherGame' };
+      const response = await request(server).post('/games').send(game);
+
       console.log('Response: ', response);
 
-      expect(response.body.title).toBe('Random');
+      expect(response.status).toBe(422);
     })
   })
 

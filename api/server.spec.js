@@ -19,7 +19,7 @@ describe('server.js', () => {
       return request(server)
         .get('/games')
         .then(res => {
-          expect(res.text).toBe('Welcome to the Sprint Challenge!');
+          expect(res.text).toBe('Welcome to the Testing Sprint Challenge!');
         })
         .catch(err => {
           console.log(err);
@@ -43,26 +43,13 @@ describe('server.js', () => {
     })
 
     it('Should return the added game', async () => {
-      const game = { title: 'Halo', genre: 'RPG' };
+      const game = { title: 'Random', genre: 'Game' };
       const response = await request(server).post('/games').send(game);
 
-      expect(response.body.title).toBe('Halo');
+      console.log('Response: ', response);
+
+      expect(response.body.title).toBe('Random');
     })
   })
-
-  // describe('Delete /', () => {
-
-  //   it('Should respond with a status code 204', () => {
-  //     const game = req.
-  //     // stuff
-  //     return request(server)
-  //       .delete('/games')
-  //       .send(game)
-  //       .then(res => {
-  //         expect(res.status).toBe(204);
-  //       })
-  //   })
-
-  // })
 
 });

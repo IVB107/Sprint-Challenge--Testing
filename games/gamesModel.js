@@ -6,15 +6,15 @@ module.exports = {
   findById,
 };
 
-async function insert(character) {
-  const [id] = await db('sbChars').insert(character);
-  return db('sbChars')
+async function insert(game) {
+  const [id] = await db('games').insert(game);
+  return db('games')
     .where({id})
     .first();
 }
 
 function getAll() {
-  return db('sbChars');
+  return db('games');
 }
 
 function findById(id) {

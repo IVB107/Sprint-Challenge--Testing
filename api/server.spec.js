@@ -41,7 +41,7 @@ describe('server.js', () => {
         })
     })
 
-    it('Should return the added game', async () => {
+    it('Should return the title of the added game', async () => {
       const game = { title: 'Random', genre: 'Game' };
       const response = await request(server).post('/games').send(game);
 
@@ -53,6 +53,15 @@ describe('server.js', () => {
       const response = await request(server).post('/games').send(game);
 
       expect(response.status).toBe(422);
+    })
+
+    // Stretch 
+
+    it('Should return status code 405 if title is not unique', async () => {
+      const game = { title: 'Halo', genre: 'RPG' };
+      const response = await request(server).post('/games').send(game);
+
+      expect(response.status).toBe(405);
     })
   })
 
